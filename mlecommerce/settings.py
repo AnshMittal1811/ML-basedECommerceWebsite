@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Custom Apps
+    'userauths',     # Custom Apps
     'core',
-    'userauths'
 ]
 
 MIDDLEWARE = [
@@ -84,6 +83,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -143,4 +143,4 @@ JAZZMIN_SETTINGS = {
     'copyright': "virtual-tryon.com",
 }
 
-# AUTH_USER_MODEL  = "userauths.User"
+AUTH_USER_MODEL = 'userauths.User'
