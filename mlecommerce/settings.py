@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -143,4 +143,4 @@ JAZZMIN_SETTINGS = {
     'copyright': "virtual-tryon.com",
 }
 
-AUTH_USER_MODEL  = 'userauths.User'
+# AUTH_USER_MODEL  = "userauths.User"
