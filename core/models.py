@@ -74,6 +74,7 @@ class Vendor(models.Model):
     days_return = models.CharField(max_length = 100, default="100")
     warranty_period = models.CharField(max_length = 100, default="100")
 
+    date = models.DateTimeField(auto_now_add=True, null = True, blank = True)
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     
     class Meta:
@@ -92,7 +93,7 @@ class Product(models.Model):
                           alphabet="abcdefgh12345")
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     category = models.ForeignKey(Category, on_delete = models.SET_NULL, null = True, related_name = "category")
-    vendor = models.ForeignKey(Vendor, on_delete = models.SET_NULL, null = True)
+    vendor = models.ForeignKey(Vendor, on_delete = models.SET_NULL, null = True, related_name = "product")
     
     title = models.CharField(max_length = 100, default = "Fresh Fruits")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
