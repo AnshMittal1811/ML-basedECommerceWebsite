@@ -7,5 +7,5 @@ app_name = "core"
 urlpatterns = [
     path("", index, name = "index"),
     path("products/", product_list_view, name = "product-list"),
-    path("category/", category_list_view, name = "cateory-list"),
+    path("category/", category_list_view, name = "category-list"),
 ]

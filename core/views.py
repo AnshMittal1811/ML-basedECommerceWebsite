@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Count
+
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
 
 
@@ -35,4 +37,16 @@ def category_list_view(request):
         "categories": categories,
     }
 
-    return render(request, 'category-list.html', context)
+    return render(request, 'core/category-list.html', context)
+
+def category_product_list_view(request, c_id):
+    category = Category.object.get(cid = c_id)
+    products = Product.objects.filter(product_status = "published",
+                                      category = category)
+    context = {
+        "category": category,
+        "products": products,
+    }
+    return render(request,
+                  "core/category-product-list.html",
+                  context)
