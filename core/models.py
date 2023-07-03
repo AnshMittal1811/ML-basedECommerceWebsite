@@ -58,10 +58,10 @@ class Tags(models.Model):
 
 class Vendor(models.Model):
     v_id = ShortUUIDField(unique=True,
-                         length=10,
-                         max_length=20,
-                         prefix="ven",
-                         alphabet = "abcdefgh12345")
+                          length=10,
+                          max_length=20,
+                          prefix="ven",
+                          alphabet = "abcdefgh12345")
     
     title = models.CharField(max_length = 100, default = "Nestify")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
@@ -92,6 +92,7 @@ class Product(models.Model):
                           alphabet="abcdefgh12345")
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     category = models.ForeignKey(Category, on_delete = models.SET_NULL, null = True)
+    vendor = models.ForeignKey(Vendor, on_delete = models.SET_NULL, null = True)
     
     title = models.CharField(max_length = 100, default = "Fresh Fruits")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
@@ -127,8 +128,8 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
-    def get_percentage(self,):
-        new_price = (self.price / self.old_price) * 100
+    def get_percentage(self):
+        new_price = ((self.old_price - self.price) / self.old_price) * 100
         return new_price
     
 class ProductImages(models.Model):
