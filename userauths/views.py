@@ -33,6 +33,7 @@ def register_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
+        messages.warning(request, f"Hey!! You are logged in!!")
         return redirect("core:index")
     print(request.user.is_authenticated)
     
