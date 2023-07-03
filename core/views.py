@@ -40,7 +40,7 @@ def category_list_view(request):
     return render(request, 'core/category-list.html', context)
 
 def category_product_list_view(request, c_id):
-    category = Category.object.get(cid = c_id)
+    category = Category.objects.get(c_id = c_id)
     products = Product.objects.filter(product_status = "published",
                                       category = category)
     context = {

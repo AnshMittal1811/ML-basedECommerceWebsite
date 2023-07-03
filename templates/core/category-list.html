@@ -92,7 +92,7 @@
                                 {% for cat in categories%}
                                 <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
                                     <div class="post-thumb">
-                                        <a href="blog-post-right.html">
+                                        <a href="{% url 'core:category-product-list' cat.c_id %}">
                                             <img class="border-radius-15" src="{{ cat.image.url }}" alt="" />
                                         </a>
                                         <div class="entry-meta">
@@ -102,7 +102,7 @@
                                     <div class="entry-content-2">
                                         <!-- <h6 class="mb-10 font-sm"><a class="entry-meta text-muted" href="blog-category-grid.html"></a></h6> -->
                                         <h4 class="post-title mb-15">
-                                            <a href="blog-post-right.html">{{ cat }}</a>
+                                            <a href="{% url 'core:category-product-list' cat.c_id %}">{{ cat }}</a>
                                         </h4>
                                         <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                             <div>
@@ -147,7 +147,11 @@
                                 <ul>
                                     {% for cat in categories %}
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{{cat.image.url}}" alt="" />{{cat.title}}</a><span class="count">{{cat.category.count}}</span>
+                                        <a href="shop-grid-right.html"> 
+                                            <img src="{{cat.image.url}}" alt="" />{{cat.title}}
+                                        </a>
+                                        <span class="count">{{cat.category.count}}
+                                        </span>
                                     </li>
                                     {% endfor %}
                                 </ul>
