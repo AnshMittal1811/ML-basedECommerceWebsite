@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third Party Apps
     'taggit',
+    'ckeditor',
     # Custom Apps
     'userauths',
     'core',
@@ -148,3 +149,4 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'userauths.User'
+CKEDITOR_UPLOAD_PATH = 'uploads/'

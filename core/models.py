@@ -1,10 +1,9 @@
 from django.db import models
-from email.policy import default
-from unicodedata import decimal
 from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from userauths.models import User
 from taggit.managers import TaggableManager
+from ckeditor_uploader.fields import RichTextUploadingField
 
 STATUS_CHOICE  = (
     ("process", "Processing"),
@@ -67,7 +66,8 @@ class Vendor(models.Model):
     title = models.CharField(max_length = 100, default = "Nestify")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     cover_image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
-    description = models.TextField(null=True, blank=True, default="This is for an amazing vendor")
+    # description = models.TextField(null=True, blank=True, default="This is for an amazing vendor")
+    description = RichTextUploadingField(null=True, blank=True, default="This is for an amazing vendor")
 
     address = models.CharField(max_length = 100, default="123 Main Street.")
     contact = models.CharField(max_length = 100, default="+(123) 456 789")
