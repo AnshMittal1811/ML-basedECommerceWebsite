@@ -1,6 +1,6 @@
 from django.urls import path
 from core.views import (category_product_list_view,
-                        category_list_view, product_detail_view, vendor_detail_view,
+                        category_list_view, product_detail_view, tags_list_view, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
                         index)
@@ -24,4 +24,7 @@ urlpatterns = [
     # Vendor
     path("vendor/", vendor_list_view, name="vendor-list"),
     path("vendor/<v_id>", vendor_detail_view, name="vendor-detail"),
+
+    # Tags
+    path("products/tag/<slug:tag_slug>/", tags_list_view, name="tags"),
 ]
