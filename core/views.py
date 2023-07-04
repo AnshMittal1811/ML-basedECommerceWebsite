@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Count
 
@@ -73,3 +73,14 @@ def vendor_detail_view(request, v_id):
     return render(request,
                   "core/vendor-detail.html",
                   context)
+
+def product_detail_view(request, p_id):
+    product = Product.objects.get(p_id = p_id)
+    # product = get_object_or_404(Product, p_id = p_id)
+    p_images = product.p_images.all()
+
+    context = {
+        'product': product,
+        'p_images': p_images,
+    }
+    return render(request, "core/product-detail.html", context)
