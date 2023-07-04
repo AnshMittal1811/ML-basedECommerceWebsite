@@ -27,18 +27,11 @@
                                     <h5 class="mb-30">By Categories</h5>
                                     <div class="categories-dropdown-wrap font-heading">
                                         <ul>
+                                            {% for cat in categories %}
                                             <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks and Dairies</a>
+                                                <a href="{% url 'core:category-product-list' cat.c_id %}"> <img src="{{cat.image.url}}" alt="" />{{cat.title}}</a>
                                             </li>
-                                            <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing &amp; beauty</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods &amp; Toy</a>
-                                            </li>
-                                            <li class="mb-0">
-                                                <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
@@ -162,7 +155,7 @@
                 <div class="col-12">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">29</strong> items for you!</p>
+                            <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize}} for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
@@ -211,7 +204,7 @@
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a href="{% url 'core:product-detail' p.p_id %}">
                                             <img class="default-img" src="{{ p.image.url }}" alt="" />
                                             <img class="hover-img" src="{{ p.image.url }}" alt="" />
                                         </a>
@@ -227,7 +220,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ p.category.title }}</a>
+                                        <a href="{% url 'core:product-detail' p.p_id %}">{{ p.category.title }}</a>
                                     </div>
                                     <h2><a href="shop-product-right.html">{{p.title}}</a></h2>
                                     <div class="product-rate-cover">

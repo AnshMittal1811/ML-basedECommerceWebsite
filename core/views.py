@@ -77,10 +77,12 @@ def vendor_detail_view(request, v_id):
 def product_detail_view(request, p_id):
     product = Product.objects.get(p_id = p_id)
     # product = get_object_or_404(Product, p_id = p_id)
+    products = Product.objects.filter(category=product.category).exclude(p_id = p_id)
     p_images = product.p_images.all()
 
     context = {
         'product': product,
         'p_images': p_images,
+        'products': products,
     }
     return render(request, "core/product-detail.html", context)
