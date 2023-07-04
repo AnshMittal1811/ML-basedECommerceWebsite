@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'userauths',     # Custom Apps
+    # Third Party Apps
+    'taggit',
+    # Custom Apps
+    'userauths',
     'core',
 ]
 
