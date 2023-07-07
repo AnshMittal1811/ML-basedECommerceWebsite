@@ -1,6 +1,12 @@
 {% extends 'partials/base.html' %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+<script src="{% static 'assets/js/prism.js' %}"></script>
+<link rel="stylesheet" href="{% static 'assets/css/prism.css' %}">
+
     <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -30,7 +36,6 @@
                                                     <img src="{{p.images.url}}" alt="product image" />
                                                 </figure>
                                                 {% endfor %}
-
                                             </div>
                                             <!-- THUMBNAILS -->
                                             <div class="slider-nav-thumbnails">
@@ -480,7 +485,7 @@
                                     <img src="{{product.vendor.image.url}}" alt="" />
                                     <div class="vendor-name ml-15">
                                         <h6>
-                                            <a href="vendor-details-2.html">{{product.vendor.title}}</a>
+                                            <a href="{% url 'core:vendor-detail' product.vendor.v_id %}">{{product.vendor.title}}</a>
                                         </h6>
                                         <div class="product-rate-cover text-end">
                                             <div class="product-rate d-inline-block">

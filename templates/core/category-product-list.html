@@ -117,7 +117,7 @@
                                         <span class="font-small ml-5 text-muted"> (4.0)</span>
                                     </div>
                                     <div>
-                                        <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ p.vendor.title }}</a></span>
+                                        <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' p.vendor.v_id %}">{{ p.vendor.title }}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
