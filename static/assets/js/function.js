@@ -9,7 +9,7 @@ $("#commentForm").submit(function(element){
         url: $(this).attr("action"),
         dataType: "json",
         success: function(response){
-            console.log("Comment saved to DB");
+            console.log("Comment saved to DB...");
             if (response.bool==true){
                 $("#review-res").html("Review Added Successfully")
             }
