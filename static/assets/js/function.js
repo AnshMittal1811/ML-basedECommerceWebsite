@@ -67,14 +67,16 @@ $(document).ready(function (){
         })
         console.log("Filter object is:", filter_object);
         $.ajax({
-            url: '/filter-product',
+            url: '/filter-products', //Can be done using Django URL template for core
             data: filter_object,
             dataType: 'json',
             beforeSend: function(){
-                console.log("Sending data...");
+                console.log("Filtering Product...");
             },
-            success: function(){
-                
+            success: function(response){
+                console.log(response);
+                console.log("Data filtered successfully...");
+                $("#filtered-product").html(response.data)
             }
         })
     })
