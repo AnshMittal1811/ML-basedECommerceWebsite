@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.db.models import Count
+from django.db.models import Count, Avg
 from taggit.models import Tag
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
 
@@ -77,12 +77,20 @@ def vendor_detail_view(request, v_id):
 def product_detail_view(request, p_id):
     product = Product.objects.get(p_id = p_id)
     # product = get_object_or_404(Product, p_id = p_id)
-    products = Product.objects.filter(category=product.category).exclude(p_id = p_id)
+    products = Product.objects.filter(category=product.category).exclude(p_id = p_id).order_by("-date")
+
+    # Getting all reviews
+    reviews = ProductReview.objects.filter(product=product)
+
+    average_rating = ProductReview.objects.filter(product=product).aggregate(ratings=Avg('ratings'))
+
     p_images = product.p_images.all()
 
     context = {
         'product': product,
+        'average_rating': average_rating,
         'p_images': p_images,
+        'reviews': reviews,
         'products': products,
     }
     return render(request, "core/product-detail.html", context)
@@ -98,4 +106,3 @@ def tags_list_view(request, tag_slug = None):
         "tag": tag,
     }
     return render(request, "core/tag.html", context)
-
