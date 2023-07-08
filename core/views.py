@@ -94,6 +94,14 @@ def product_detail_view(request, p_id):
     # Products Review form
     review_form = ProductReviewForms()
 
+    make_review = True
+
+    if request.user.is_authenticated:
+        user_review_count = ProductReview.objects.filter(user=request.user, product=product).count()
+
+        if user_review_count > 0:
+            make_review = False
+
     # Products images form
     p_images = product.p_images.all()
 
@@ -101,6 +109,7 @@ def product_detail_view(request, p_id):
         'product': product,
         'review_form': review_form,
         'average_rating': average_rating,
+        'make_review': make_review,
         'p_images': p_images,
         'reviews': reviews,
         'products': products,

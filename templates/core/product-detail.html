@@ -277,8 +277,10 @@
                                                                                 <div class="d-flex align-items-center">
                                                                                     <span class="font-xs text-muted">{{r.date|date:"d M, Y"}}</span>
                                                                                 </div>
-                                                                                <div class="product-rate d-inline-block">
-                                                                                    <div class="product-rating" style="width: 100%"></div>
+                                                                                <div>
+                                                                                    {% for star in r.ratings|ljust:r.ratings %}
+                                                                                        <i class="fas fa-star text-warning"></i>
+                                                                                    {% endfor %}
                                                                                 </div>
                                                                             </div>
                                                                             <!-- <a href="#" class="reply">Reply</a> -->
@@ -322,13 +324,15 @@
                                                     </div>
                                                 </div>
                                                 <!--comment form-->
+                                                {% if request.user.is_authenticated %}
+                                                {% if make_review == True %}
                                                 <div class="comment-form">
-                                                    <h4 class="mb-15">Add a review</h4>
+                                                    <h4 class="mb-15 add-review">Add a review</h4>
                                                     <strong class="text-success" id="review-res"> </strong>
                                                     <!-- <div class="product-rate d-inline-block mb-30"></div> -->
                                                     <div class="row">
                                                         <div class="col-lg-8 col-md-12">
-                                                            <form class="form-contact comment_form" action="{% url 'core:add-ajax-review' product.p_id %}" id="commentForm" method="POST">
+                                                            <form class="form-contact comment_form hide-comment-form" action="{% url 'core:add-ajax-review' product.p_id %}" id="commentForm" method="POST">
                                                                 {% csrf_token %}
                                                                 <div class="row">
                                                                     <div class="col-12">
@@ -366,6 +370,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endif %}
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
