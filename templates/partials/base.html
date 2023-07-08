@@ -17,7 +17,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/plugins/slider-range.css" />
     <link rel="stylesheet" href="{%  static 'assets/css/main.css'  %}" />
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -194,7 +194,7 @@
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="#">
+                            <form action="{% url 'core:search' %}" method="GET">
                                 <select class="select-active">
                                     <option>All Categories</option>
                                     <option>Milks and Dairies</option>
@@ -208,7 +208,9 @@
                                     <option>Noodles & Rice</option>
                                     <option>Ice cream</option>
                                 </select>
-                                <input type="text" placeholder="Search for items..." />
+                                <input type="text" placeholder="Search for items..." name="q" />
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
                             </form>
                         </div>
                         <div class="header-action-right">

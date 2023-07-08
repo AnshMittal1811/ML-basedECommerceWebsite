@@ -155,3 +155,16 @@ def add_ajax_review(request, p_id):
         'average_reviews': average_reviews,
         }
     )
+
+
+def search_view(request):
+    query = request.GET.get("q")
+    # Can also use description__icontains = query
+    products = Product.objects.filter(title__icontains = query,).order_by("-date")
+    context = {
+        "products": products,
+        "query": query,
+    }
+
+    return render(request, "core/search.html", context)
+
