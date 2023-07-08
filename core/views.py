@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Count, Avg
 from taggit.models import Tag
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
+from core.forms import ProductReviewForms
 
 
 # Create your views here.
@@ -20,6 +21,7 @@ def index(request):
                   'core/index.html',
                   context)
 
+
 def product_list_view(request):
     products = Product.objects.filter(product_status="published")
 
@@ -31,6 +33,7 @@ def product_list_view(request):
                   'core/product-list.html',
                   context)
 
+
 def category_list_view(request):
     categories = Category.objects.all()
     context = {
@@ -38,6 +41,7 @@ def category_list_view(request):
     }
 
     return render(request, 'core/category-list.html', context)
+
 
 def category_product_list_view(request, c_id):
     category = Category.objects.get(c_id = c_id)
@@ -51,6 +55,7 @@ def category_product_list_view(request, c_id):
                   "core/category-product-list.html",
                   context)
 
+
 def vendor_list_view(request):
 
     vendors = Vendor.objects.all()
@@ -60,6 +65,7 @@ def vendor_list_view(request):
     return render(request,
                   "core/vendor-list.html",
                   context)
+
 
 def vendor_detail_view(request, v_id):
     vendor = Vendor.objects.get(v_id = v_id)
@@ -74,6 +80,7 @@ def vendor_detail_view(request, v_id):
                   "core/vendor-detail.html",
                   context)
 
+
 def product_detail_view(request, p_id):
     product = Product.objects.get(p_id = p_id)
     # product = get_object_or_404(Product, p_id = p_id)
@@ -84,16 +91,22 @@ def product_detail_view(request, p_id):
 
     average_rating = ProductReview.objects.filter(product=product).aggregate(ratings=Avg('ratings'))
 
+    # Products Review form
+    review_form = ProductReviewForms()
+
+    # Products images form
     p_images = product.p_images.all()
 
     context = {
         'product': product,
+        'review_form': review_form,
         'average_rating': average_rating,
         'p_images': p_images,
         'reviews': reviews,
         'products': products,
     }
     return render(request, "core/product-detail.html", context)
+
 
 def tags_list_view(request, tag_slug = None):
     products = Product.objects.filter(product_status = "published").order_by("-id")
@@ -106,3 +119,30 @@ def tags_list_view(request, tag_slug = None):
         "tag": tag,
     }
     return render(request, "core/tag.html", context)
+
+
+def add_ajax_review(request, p_id):
+    product = Product.objects.get(p_id = p_id)
+    user = request.user
+
+    review = ProductReview.objects.create(
+        user = user,
+        product=product,
+        review=request.POST["review"],
+        ratings=request.POST["ratings"],
+    )
+    
+    context = {
+        'user': user.username,
+        'review': request.POST["review"],
+        'ratings': request.POST["ratings"],
+    }
+
+    average_reviews = ProductReview.objects.filter(product=product).aggregate(ratings=Avg("ratings"))
+    return JsonResponse(
+        {
+        'bool': True,
+        'context': context,
+        'average_reviews': average_reviews,
+        }
+    )
