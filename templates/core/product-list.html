@@ -121,12 +121,13 @@
                                         <div class="price-filter mb-20">
                                             <div class="price-filter-inner">
                                                 <div id="slidder-range" class="mb-20"></div>
-                                                <input type="range" name = "range" class="slider-range" id="range" min = "0" max = "100" oninput="max_price.value=this.value">
+                                                <input type="range" name = "range" class="slider-range" value = "{{min_max_price.price__min|floatformat:2}}" id="range" min = "{{min_max_price.price__min}}" max = "{{min_max_price.price__max}}" oninput="max_price.value=this.value">
                                                 <div class="d-flex justify-content-between">
-                                                    <div class="caption">From: <strong id="slider-range-value1" class="text-brand"></strong></div>
-                                                    <div class="caption">To: <strong id="slider-range-value2" class="text-brand"></strong></div>
+                                                    <div class="caption">From: <strong id="slider-range-value1" class="text-brand">{{min_max_price.price__min|floatformat:2}}</strong></div>
+                                                    <div class="caption">To: <strong id="slider-range-value2" class="text-brand">{{min_max_price.price__max|floatformat:2}}</strong></div>
                                                 </div>
-                                                <input type="number" name="" id="max_price" class="form-check-ifnout" min="0" max="100" placeholder="Current Price" onkeyup="range.value=this.value">
+                                                <input type="number" name="" id="max_price" value = "{{min_max_price.price__min|floatformat:2}}" class="form-check-ifnout" min="{{min_max_price.price__min}}" max="{{min_max_price.price__max}}" placeholder="Current Price" onkeyup="range.value=this.value">
+                                                <!-- <h3>{{min_max_price}}</h3> -->
                                             </div>
                                         </div>
                                         <div class="custome-checkbox">
