@@ -3,6 +3,7 @@ const MonthNames = ["Jan", "Feb", "Mar", "April", "May", "June",
     "July", "Aug", "Sept", "Oct", "Nov", "Dec"
 ];
 
+// For Comment-Reviews
 $("#commentForm").submit(function(element){
     element.preventDefault();
     let date = new Date();
@@ -49,11 +50,17 @@ $("#commentForm").submit(function(element){
     })
 })
 
-
+// For Filtering based on Categories and Vendors
 $(document).ready(function (){
-    $(".filter-checkbox").on("click", function(){
+    $(".filter-checkbox, #price-filter-btn").on("click", function(){
         console.log("A checkbox have been clicked");
         let filter_object = {}
+
+        let min_price = $("#max_price").attr("min")
+        let max_price = $("#max_price").val()
+
+        filter_object.min_price = min_price
+        filter_object.max_price = max_price
 
         $(".filter-checkbox").each(function(){
             let filter_value = $(this).val()
@@ -79,5 +86,34 @@ $(document).ready(function (){
                 $("#filtered-product").html(response.data)
             }
         })
+    })
+
+    $("#max_price").on("blur", function(){
+        let min_price = $(this).attr('min')
+        let max_price = $(this).attr('max')
+
+        let main_value = $(this).val()
+
+        // console.log("Value is:", main_value);
+        // console.log("Max value is:", min_price);
+        // console.log("Min value is:", max_price);
+
+        if(main_value<parseInt(min_price) || main_value>parseInt(max_price)){
+            console.log("Price Error Occurred...");
+            min_price = Math.round(min_price * 100 ) / 100;
+            max_price = Math.round(max_price * 100 ) / 100;
+
+            // console.log("************************");
+            // console.log("************************");
+            // console.log("************************");
+            // console.log("Max value is:", min_Price);
+            // console.log("Min value is:", max_Price);
+            alert("Price must be between $" + min_price + ' and $' + max_price + '!!');
+            $(this).val(min_price)
+            $("#range").val(min_price)
+            $(this).focus
+
+            return false
+        }
     })
 })
