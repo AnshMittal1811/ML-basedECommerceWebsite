@@ -161,7 +161,8 @@ $(document).ready(function (){
     })
 
 
-    $(".delete-product").on("click", function(){
+    $(".delete-product").on("click", function(event){
+        // event.preventDefault();
         let product_id =  $(this).attr("data-product")
         let this_val = $(this)
 
@@ -171,6 +172,33 @@ $(document).ready(function (){
             url: "/delete-from-cart",
             data: {
                 "id": product_id,
+            },
+            dataType: "json",
+            beforeSend: function(){
+                this_val.hide()
+            },
+            success: function(response){
+                this_val.show()
+                $(".cart-items-count").text(response.totalcartitems)
+                $("#cart-list").html(response.data)
+            }
+        })
+    })
+
+    $(".update-product").on("click", function(event){
+        // event.preventDefault();
+        let product_id =  $(this).attr("data-product")
+        let this_val = $(this)
+        let product_quantity = $(".product-qty-"+product_id).val()
+
+        console.log("Product ID:", product_id);
+        console.log("Product Quantity:", product_quantity);
+
+        $.ajax({
+            url: "/update-cart",
+            data: {
+                "id": product_id,
+                "qty": product_quantity,
             },
             dataType: "json",
             beforeSend: function(){
