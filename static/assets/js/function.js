@@ -87,7 +87,7 @@ $(document).ready(function (){
             }
         })
     })
-
+    // Changing the price bar in real time
     $("#max_price").on("blur", function(){
         let min_price = $(this).attr('min')
         let max_price = $(this).attr('max')
@@ -114,6 +114,39 @@ $(document).ready(function (){
             $(this).focus
 
             return false
+        }
+    })
+})
+
+// Add to cart functionality
+$("#add-to-cart-btn").on("click", function(){
+    let quantity = $("#product-quantity").val()
+    let product_title = $(".product-title").val()
+    let product_id = $(".product-id").val()
+    let product_price = $("#current-product-price").text()
+    let this_val = $(this)
+
+    console.log("Quantity", quantity);
+    console.log("Product Title", product_title);
+    console.log("Product ID", product_id);
+    console.log("Product Price", product_price);
+    console.log("Current Element", this_val);
+
+    $.ajax({
+        url: '/add-to-cart',
+        data: {
+            'id': product_id,
+            'qty': quantity,
+            'title': product_title,
+            'price': product_price,
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            console.log("Adding Product to Cart...");
+        },
+        success: function(response){
+            this_val.html("Item Added to Cart")
+            console.log("Added Product to Cart");
         }
     })
 })
