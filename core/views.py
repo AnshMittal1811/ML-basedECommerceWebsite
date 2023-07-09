@@ -203,7 +203,7 @@ def add_to_cart(request):
     }
 
     if 'cart_data_obj' in request.session:
-        if str(request.GET[id]) in request.session['cart_data_obj']:
+        if str(request.GET['id']) in request.session['cart_data_obj']:
             cart_data = request.session['cart_data_obj']
             cart_data[str(request.GET['id'])]['qty'] = int(cart_product[str(request.GET['id'])]['qty'])
             cart_data.update(cart_data)
@@ -214,7 +214,8 @@ def add_to_cart(request):
             cart_data.update(cart_product)
             request.session['cart_data_obj'] = cart_data
     else:
-        request.session['cart_cata_obj'] = cart_product
+        request.session['cart_data_obj'] = cart_product
+
     return JsonResponse({"data": request.session['cart_data_obj'],
                          'totalcartitems': len(request.session['cart_data_obj'])})
 
