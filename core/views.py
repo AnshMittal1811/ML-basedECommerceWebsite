@@ -194,6 +194,7 @@ def filter_view(request):
 
     return JsonResponse({"data": data})
 
+
 def add_to_cart(request):
     cart_product = {}
     cart_product[str(request.GET['id'])] = {
@@ -221,3 +222,6 @@ def add_to_cart(request):
     return JsonResponse({"data": request.session['cart_data_obj'],
                          'totalcartitems': len(request.session['cart_data_obj'])})
 
+
+def cart_view(request):
+    return render(request, "core/cart.html")
