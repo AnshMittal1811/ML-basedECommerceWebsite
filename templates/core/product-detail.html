@@ -88,11 +88,11 @@
                                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                                 </div> -->
                                                 <!-- <div> -->
-                                                    <input type="number" value="1" id="product-quantity" class="w-25 mb-10">
+                                                    <input type="number" value="1" id="product-quantity" class="w-25 mb-10 product-quantity-{{product.id}}">
                                                     <br />
                                                 <!-- </div> -->
                                                 <div class="product-extra-link2">
-                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">
+                                                    <!-- <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}"> -->
                                                     <input type="hidden" value="{{ product.p_id }}" class="product-pid-{{product.id}}">
                                                     <input type="hidden" value="{{ product.image.url }}" class="product-image-{{product.id}}">
                                                     <input type="hidden" value="{{ product.id }}" class="product-id-{{product.id}}">

@@ -89,26 +89,9 @@
                                     <h5 class="mb-30">By Tags</h5>
                                     <div class="sidebar-widget widget-tags">
                                         <ul class="tags-list">
+                                            <!-- Add the tags for loop here -->
                                             <li class="hover-up">
                                                 <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Milk</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Broccoli</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Smoothie</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Fruit</a>
-                                            </li>
-                                            <li class="hover-up mr-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Salad</a>
-                                            </li>
-                                            <li class="hover-up mr-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Appetizer</a>
-                                            </li>
-                                            <li class="hover-up mr-0 mb-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Appetizer</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -223,7 +206,7 @@
                                     <div class="product-category">
                                         <a href="{% url 'core:product-detail' p.p_id %}">{{ p.category.title }}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{p.title}}</a></h2>
+                                    <h2><a href="{% url 'core:product-detail' p.p_id %}">{{p.title}}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
