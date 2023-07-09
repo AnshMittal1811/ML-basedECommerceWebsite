@@ -197,9 +197,11 @@ def filter_view(request):
 def add_to_cart(request):
     cart_product = {}
     cart_product[str(request.GET['id'])] = {
+        'p_id': request.GET['p_id'],
         'title': request.GET['title'],
         'qty': request.GET['qty'],
         'price': request.GET['price'],
+        'image': request.GET['image'],
     }
 
     if 'cart_data_obj' in request.session:

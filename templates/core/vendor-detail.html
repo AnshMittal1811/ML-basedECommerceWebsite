@@ -155,11 +155,17 @@
                                 </div>
                                 <p class="mt-15 mb-15">{{prod.description|truncatechars:50}}</p>
                                 <div class="product-price">
-                                    <span>${{prod.price}}</span>
+                                    <span>$</span> <span class="current-product-price-{{prod.id}}">{{ prod.price }}</span>
                                     <span class="old-price">${{prod.old_price}}</span>
                                 </div>
                                 <div class="mt-30 d-flex align-items-center">
-                                    <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
+                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{prod.id}}">
+                                    <input type="hidden" value="{{ prod.p_id }}" class="product-pid-{{prod.id}}">
+                                    <input type="hidden" value="{{ prod.image.url }}" class="product-image-{{prod.id}}">
+                                    <input type="hidden" value="{{ prod.id }}" class="product-id-{{prod.id}}">
+                                    <input type="hidden" value="{{ prod.title }}" class="product-title-{{prod.id}}">
+                                    <button class="add btn btn-success add-to-cart-btn b-none" data-index="{{ prod.id }}" style="border:none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</button>
+                                    <!-- <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a> -->
                                     <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
                                 </div>
                             </div>
