@@ -255,10 +255,11 @@
                                         <span class="pro-count blue cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                                     </a>
                                     <a href="{% url 'core:cart' %}"><span class="lable">Cart</span></a>
+                                    
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">                                        <div class="shopping-cart-footer">
                                             <div class="shopping-cart-button">
                                                 <a href="{% url 'core:cart' %}" class="outline">View cart</a>
-                                                <a href="shop-checkout.html">Checkout</a>
+                                                <a href="{% url 'core:checkout' %}">Checkout</a>
                                             </div>
                                         </div>
                                     </div>
@@ -339,19 +340,24 @@
                                 <ul>
                                     <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li>
                                     <li>
-                                        <a class="active" href="{% url 'core:index'%}">Home <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
+                                        <a class="active" href="{% url 'core:index'%}">Home 
+                                            <!-- <i class="fi-rs-angle-down"></i> -->
+                                        </a>
+                                        <!-- <ul class="sub-menu">
                                             <li><a href="{% url 'core:index'%}">Home 1</a></li>
                                             <li><a href="index-2.html">Home 2</a></li>
                                             <li><a href="index-3.html">Home 3</a></li>
                                             <li><a href="index-4.html">Home 4</a></li>
                                             <li><a href="index-5.html">Home 5</a></li>
                                             <li><a href="index-6.html">Home 6</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </li>
                                     <!-- <li>
                                         <a href="page-about.html">Category</a>
                                     </li> -->
+                                    <li>
+                                        <a href="{% url 'core:product-list' %}">Shop</a>
+                                    </li>
                                     <li>
                                         <a href="{% url 'core:category-list' %}">Category <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -361,9 +367,6 @@
                                             <hr>
                                             <li><a href="{% url 'core:category-list' %}">All Categories</a></li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'core:product-list' %}">Shop</a>
                                     </li>
                                     <li>
                                         <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>

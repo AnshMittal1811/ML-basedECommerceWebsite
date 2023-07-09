@@ -673,69 +673,38 @@
                     <div class="border p-40 cart-totals ml-30 mb-50">
                         <div class="d-flex align-items-end justify-content-between mb-30">
                             <h4>Your Order</h4>
-                            <h6 class="text-muted">Subtotal</h6>
+                            <h6 class="text-muted">Subtotal: <span class="text-brand">$ {{cart_total_amount|floatformat:2}}</span></h6>
                         </div>
                         <div class="divider-2 mb-30"></div>
+                        <a href="{% url 'core:cart' %}" class="btn btn-fill-out btn-block mt-30 mb-40">Go Back to Cart</a>
+
                         <div class="table-responsive order_table checkout">
                             <table class="table no-border">
                                 <tbody>
+                                    {% for product_id, item in cart_data.items %}
                                     <tr>
-                                        <td class="image product-thumbnail"><img src="{% static 'assets/imgs/shop/product-1-1.jpg' %}" alt="#"></td>
+                                        <td class="image product-thumbnail"><img src="{{item.image}}" alt="#"></td>
                                         <td>
-                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading">Yidarton Women Summer Blue</a></h6></span>
-                                            <div class="product-rate-cover">
+                                            <h6 class="w-160 mb-5"><a href="{% url 'core:product-detail' item.p_id%}" class="text-heading">{{item.title}}</a></h6></span>
+                                            <!-- <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width:90%">
                                                     </div>
                                                 </div>
                                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div>
+                                            </div> -->
                                         </td>
                                         <td>
-                                            <h6 class="text-muted pl-20 pr-20">x 1</h6>
+                                            <h6 class="text-muted pl-20 pr-20">x {{ item.qty }}</h6>
                                         </td>
                                         <td>
-                                            <h4 class="text-brand">$13.3</h4>
+                                            <h5 class="text-muted">$ {{item.price}}</h4>
+                                        </td>
+                                        <td>
+                                            <h5 class="text-brand">$ {% widthratio item.price 1 item.qty %}</h5>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="image product-thumbnail"><img src="{% static 'assets/imgs/shop/product-2-1.jpg' %}" alt="#"></td>
-                                        <td>
-                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading">Seeds of Change Organic Quinoa</a></h6></span>
-                                            <div class="product-rate-cover">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width:90%">
-                                                    </div>
-                                                </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="text-muted pl-20 pr-20">x 1</h6>
-                                        </td>
-                                        <td>
-                                            <h4 class="text-brand">$15.0</h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="image product-thumbnail"><img src="{% static 'assets/imgs/shop/product-3-1.jpg' %}" alt="#"></td>
-                                        <td>
-                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading">Angie’s Boomchickapop Sweet </a></h6></span>
-                                            <div class="product-rate-cover">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width:90%">
-                                                    </div>
-                                                </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="text-muted pl-20 pr-20">x 1</h6>
-                                        </td>
-                                        <td>
-                                            <h4 class="text-brand">$17.2</h4>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
