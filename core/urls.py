@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import (add_ajax_review, category_product_list_view,
+from core.views import (add_ajax_review, add_to_cart, category_product_list_view,
                         category_list_view, filter_view, product_detail_view, search_view, tags_list_view, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
@@ -35,6 +35,8 @@ urlpatterns = [
     path("search/", search_view, name = "search"),
 
     # Async Filtering Products
-    path("filter-products/", filter_view, name = "filter-product")
+    path("filter-products/", filter_view, name = "filter-product"),
 
+    # Cart View for Data
+    path("add-to-cart/", add_to_cart, name = "add-to-cart"),
 ]
