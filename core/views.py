@@ -387,8 +387,8 @@ def customer_dashboard(request):
 @login_required
 def order_detail(request, id):
     order = CartOrder.objects.get(user=request.user, id=id)
-    products = CartOrderItems.objects.filter(order=order)
+    order_items = CartOrderItems.objects.filter(order=order)
     context = {
-        "products": products,
+        "order_items": order_items,
     }
     return render(request, "core/order-detail.html", context)

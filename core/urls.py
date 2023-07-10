@@ -55,6 +55,6 @@ urlpatterns = [
 
     # Customer Dashboard
     path("dashboard/", customer_dashboard, name = "dashboard"),
-    path("dashboard/order/<id>", order_detail, name = "order-detail"),
+    path("dashboard/order/<int:id>", order_detail, name = "order-detail"),
 
 ]
