@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
 from core.forms import ProductReviewForms
 
+import random
+from datetime import datetime
 from paypal.standard.forms import PayPalPaymentsForm
 from taggit.models import Tag
 
@@ -294,12 +296,39 @@ def update_cart(request):
 
 @login_required
 def checkout_view(request):
+    cart_total_amount = 0
+    total_amount = 0
+    if 'cart_data_obj' in request.session:
+        # Getting total amount for PayPal account
+        for product_id, item in request.session['cart_data_obj'].items():
+            total_amount += float(int(item['qty']) * float(item['price']))
+
+        # Create order Objects
+        order = CartOrder.objects.create(
+            user=request.user,
+            price=total_amount,
+        )
+
+        # Getting total_amount for the cart
+        for product_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += float(int(item['qty']) * float(item['price']))
+
+            cart_order_products = CartOrderItems.objects.create(
+                order = order,
+                invoice_no = "INVOICE_NO-" + str(order.id),
+                item=item['title'],
+                image=item['image'],
+                qty=item['qty'],
+                price=item['price'],
+                total=float(item['qty']) * float(item['price']),
+            )
+
     host = request.get_host()
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': '200',
-        'item_name': "Order-Item-No-3",
-        'invoice': "INVOICE_NO-3",
+        'amount': cart_total_amount,
+        'item_name': "Order-Item-No-" + str(order.id),
+        'invoice': "INVOICE_NO-" + str(order.id),
         'currency_code': "USD",
         'notify_url': 'http://{}{}'.format(host, reverse("core:paypal-ipn")),
         'return_url': 'http://{}{}'.format(host, reverse("core:payment-successful")),
@@ -308,23 +337,39 @@ def checkout_view(request):
 
     paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
+    return render(request, "core/checkout.html", {
+        'cart_data': request.session['cart_data_obj'],
+        'totalcartitems': len(request.session['cart_data_obj']),
+        'cart_total_amount': cart_total_amount,
+        'paypal_payment_button': paypal_payment_button,
+        # 'active_address': active_address,
+    })
+
+    # try:
+    #     active_address = Address.objects.get(user=request.user, status=True)
+    # except:
+    #     messages.warning(request, "There are multiple addresses, only one should be activated.")
+    #     active_address = None
+
+
+@login_required
+def payment_completed_view(request):
+    random_hash = ''.join(random.choice('0123456789ABCDEHFGHIJKLMNOPQRSTUVWXYZ') for _ in range(16))
     cart_total_amount = 0.00
     if 'cart_data_obj' in request.session:
         for product_id, item in request.session['cart_data_obj'].items():
             cart_total_amount += float(int(item['qty']) * float(item['price']))
-            
-        return render(request, "core/checkout.html", {'cart_data': request.session['cart_data_obj'],
-                                                      'totalcartitems': len(request.session['cart_data_obj']),
-                                                      'cart_total_amount': cart_total_amount,
-                                                      'paypal_payment_button': paypal_payment_button})
+    issue_date = datetime.now()
+    # context = request.POST
+    return render(request, 'core/payment-completed.html', {
+        'cart_data': request.session['cart_data_obj'],
+        'totalcartitems': len(request.session['cart_data_obj']),
+        'cart_total_amount': cart_total_amount,
+        'issue_date': issue_date,
+        'random_hash': random_hash,
+    })
 
 
-@csrf_exempt
-def payment_completed_view(request):
-    context = request.POST
-    return render(request, 'core/payment-completed.html', {'context': context})
-
-
-@csrf_exempt
+@login_required
 def payment_failed_view(request):
     return render(request, 'core/payment-failed.html')

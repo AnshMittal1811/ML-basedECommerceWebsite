@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -33,14 +35,14 @@
                                         <div class="logo d-flex align-items-center">
                                             <a href="index.html" class="mr-20"><img src="{% static 'assets/imgs/theme/favicon.svg' %}" alt="logo" /></a>
                                             <div class="text">
-                                                <strong class="text-brand">NestMart Inc</strong> <br />
+                                                <strong class="text-brand">VirtualMart Nest Inc</strong> <br />
                                                 205 North, Suite 810, Chicago, USA
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-end">
                                         <h2>INVOICE</h2>
-                                        <h6>ID Number: <span class="text-brand">98657</span></h6>
+                                        <!-- <h6>ID Number: <span class="text-brand">98657</span></h6> -->
                                     </div>
                                 </div>
                             </div>
@@ -59,61 +61,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for product_id, item in cart_data.items %}
                                             <tr>
                                                 <td>
                                                     <div class="item-desc-1">
-                                                        <span>Field Roast Chao Cheese Creamy Original</span>
-                                                        <small>SKU: FWM15VKT</small>
+                                                        <span>{{item.title}}</span>
+                                                        <!-- <small>SKU: {{item}}</small> -->
                                                     </div>
                                                 </td>
-                                                <td class="text-center">$10.99</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-right">$10.99</td>
+                                                <td class="text-center">$ {{item.price|floatformat:2}}</td>
+                                                <td class="text-center">{{item.qty|floatformat:2}}</td>
+                                                <td class="text-right">${% widthratio item.price 1 item.qty %}</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="item-desc-1">
-                                                        <span>Blue Diamond Almonds Lightly Salted</span>
-                                                        <small>SKU: FWM15VKT</small>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">$20.00</td>
-                                                <td class="text-center">3</td>
-                                                <td class="text-right">$60.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="item-desc-1">
-                                                        <span>Fresh Organic Mustard Leaves Bell Pepper</span>
-                                                        <small>SKU: KVM15VK</small>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">$640.00</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-right">$640.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="item-desc-1">
-                                                        <span>All Natural Italian-Style Chicken Meatballs</span>
-                                                        <small>SKU: 98HFG</small>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">$240.00</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-right">$240.00</td>
-                                            </tr>
+                                            {% endfor %}
                                             <tr>
                                                 <td colspan="3" class="text-end f-w-600">SubTotal</td>
-                                                <td class="text-right">$1710.99</td>
+                                                <td class="text-right">$ {{cart_total_amount|floatformat:2}}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end f-w-600">Tax</td>
-                                                <td class="text-right">$85.99</td>
+                                                <td class="text-right">${{ cart_total_amount|multiply:0.095|floatformat:2}}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end f-w-600">Grand Total</td>
-                                                <td class="text-right f-w-600">$1795.99</td>
+                                                <td class="text-right f-w-600">${{cart_total_amount|multiply:1.095|floatformat:2}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -124,26 +95,26 @@
                                     <div class="col-md-6">
                                         <h6 class="mb-15">Invoice Infor</h6>
                                         <p class="font-sm">
-                                            <strong>Issue date:</strong> 20 march, 2022<br />
-                                            <strong>Invoice To:</strong> NestMart Inc<br />
-                                            <strong>Swift Code:</strong> BFTV VNVXS
+                                            <strong>Issue date:</strong> {{issue_date|date:"M-d-Y H:i:s"}}<br />
+                                            <strong>Invoice To:</strong> {{request.user|title}}<br />
+                                            <!-- <strong>Swift Code:</strong> BFTV VNVXS -->
                                         </p>
                                     </div>
                                     <div class="col-md-6 text-end">
                                         <h6 class="mb-15">Total Amount</h6>
-                                        <h3 class="mt-0 mb-0 text-brand">$1795.99</h3>
+                                        <h3 class="mt-0 mb-0 text-brand">${{cart_total_amount|multiply:1.095|floatformat:2}}</h3>
                                         <p class="mb-0 text-muted">Taxes Included</p>
                                     </div>
                                 </div>
                                 <div class="row text-center">
                                     <div class="hr mt-30 mb-30"></div>
-                                    <p class="mb-0 text-muted"><strong>Note:</strong>This is computer generated receipt and does not require physical signature.</p>
+                                    <p class="mb-0 text-muted"><strong>Hey {{request.user|title}}, </strong>Thanks for shopping at VirtualMart: Nest</p>
                                 </div>
                             </div>
                         </div>
                         <div class="invoice-btn-section clearfix d-print-none">
                             <a href="javascript:window.print()" class="btn btn-lg btn-custom btn-print hover-up"> <img src="{% static 'assets/imgs/theme/icons/icon-print.svg' %}" alt="" /> Print </a>
-                            <a id="invoice_download_btn" class="btn btn-lg btn-custom btn-download hover-up"> <img src="{% static 'assets/imgs/theme/icons/icon-download.svg' %}" alt="" /> Download </a>
+                            <a id="invoice_download_btn" value="{{random_hash}}" class="btn btn-lg btn-custom btn-download hover-up"> <img src="{% static 'assets/imgs/theme/icons/icon-download.svg' %}" alt="" /> Download </a>
                         </div>
                     </div>
                 </div>
