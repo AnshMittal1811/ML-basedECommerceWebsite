@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third Party Apps
     'taggit',
     'ckeditor',
+    'paypal.standard.ipn',
     # Custom Apps
     'userauths',
     'core',
