@@ -131,7 +131,7 @@
                         <div class="header-info">
                             <ul>
                                 <li><a href="page-about.html">About Us</a></li>
-                                <li><a href="page-account.html">My Account</a></li>
+                                <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
                                 <li><a href="shop-wishlist.html">Wishlist</a></li>
                                 <li><a href="shop-order.html">Order Tracking</a></li>
                             </ul>
@@ -271,7 +271,7 @@
                                     <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
+                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
                                             <li><a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
                                             <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My Voucher</a></li>
                                             <li><a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a></li>
@@ -427,7 +427,7 @@
                                                             <span class="new-price text-success">Save to 50%</span>
                                                         </div>
                                                         <div class="menu-banner-btn">
-                                                            <a href="shop-product-right.html">Shop now</a>
+                                                            <a href="{% url 'core:product-list' %}">Shop now</a>
                                                         </div>
                                                     </div>
                                                     <div class="menu-banner-discount">
@@ -461,7 +461,7 @@
                                         <ul class="sub-menu">
                                             <li><a href="page-about.html">About Us</a></li>
                                             <li><a href="page-contact.html">Contact</a></li>
-                                            <li><a href="page-account.html">My Account</a></li>
+                                            <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
                                             <li><a href="page-login.html">Login</a></li>
                                             <li><a href="page-register.html">Register</a></li>
                                             <li><a href="page-forgot-password.html">Forgot password</a></li>
@@ -556,18 +556,18 @@
                         <ul class="mobile-menu font-heading">
                             <li class="menu-item-has-children">
                                 <a href="{%url 'core:index'%}">Home</a>
-                                <ul class="dropdown">
-                                    <li><a href="{% url 'core:index' %}">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
+                                <!-- <ul class="dropdown"> -->
+                                    <!-- <li><a href="{% url 'core:index' %}">Home 1</a></li> -->
+                                    <!-- <li><a href="index-2.html">Home 2</a></li>
                                     <li><a href="index-3.html">Home 3</a></li>
                                     <li><a href="index-4.html">Home 4</a></li>
                                     <li><a href="index-5.html">Home 5</a></li>
-                                    <li><a href="index-6.html">Home 6</a></li>
-                                </ul>
+                                    <li><a href="index-6.html">Home 6</a></li> -->
+                                <!-- </ul> -->
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop-grid-right.html">shop</a>
-                                <ul class="dropdown">
+                                <a href="{% url 'core:product-list' %}">shop</a>
+                                <!-- <ul class="dropdown">
                                     <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
                                     <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
@@ -598,7 +598,7 @@
                                             <li><a href="shop-invoice-6.html">Shop Invoice 6</a></li>
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Vendors</a>
@@ -665,7 +665,7 @@
                                 <ul class="dropdown">
                                     <li><a href="page-about.html">About Us</a></li>
                                     <li><a href="page-contact.html">Contact</a></li>
-                                    <li><a href="page-account.html">My Account</a></li>
+                                    <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
                                     <li><a href="page-login.html">Login</a></li>
                                     <li><a href="page-register.html">Register</a></li>
                                     <li><a href="page-forgot-password.html">Forgot password</a></li>

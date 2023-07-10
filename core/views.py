@@ -373,3 +373,22 @@ def payment_completed_view(request):
 @login_required
 def payment_failed_view(request):
     return render(request, 'core/payment-failed.html')
+
+
+@login_required
+def customer_dashboard(request):
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    context={
+        "orders": orders,
+    }
+    return render(request, 'core/dashboard.html', context)
+
+
+@login_required
+def order_detail(request, id):
+    order = CartOrder.objects.get(user=request.user, id=id)
+    products = CartOrderItems.objects.filter(order=order)
+    context = {
+        "products": products,
+    }
+    return render(request, "core/order-detail.html", context)
