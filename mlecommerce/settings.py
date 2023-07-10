@@ -149,6 +149,8 @@ JAZZMIN_SETTINGS = {
     'copyright': "virtual-tryon.com",
 }
 
+LOGIN_URL = "userauths:sign-in"
+
 AUTH_USER_MODEL = 'userauths.User'
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
@@ -165,3 +167,6 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
+
+PAYPAL_RECEIVER_EMAIL = 'cvbusinessgenai@gmail.com'
+PAYPAL_TEST=True
