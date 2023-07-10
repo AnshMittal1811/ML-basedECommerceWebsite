@@ -337,19 +337,20 @@ def checkout_view(request):
 
     paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
+    try:
+        active_address = Address.objects.get(user=request.user, status=True)
+    except:
+        messages.warning(request, "There are multiple addresses, only one should be activated.")
+        active_address = None
+
     return render(request, "core/checkout.html", {
         'cart_data': request.session['cart_data_obj'],
         'totalcartitems': len(request.session['cart_data_obj']),
         'cart_total_amount': cart_total_amount,
         'paypal_payment_button': paypal_payment_button,
-        # 'active_address': active_address,
+        'active_address': active_address,
     })
 
-    # try:
-    #     active_address = Address.objects.get(user=request.user, status=True)
-    # except:
-    #     messages.warning(request, "There are multiple addresses, only one should be activated.")
-    #     active_address = None
 
 
 @login_required
@@ -407,3 +408,14 @@ def order_detail(request, id):
         "order_items": order_items,
     }
     return render(request, "core/order-detail.html", context)
+
+
+@login_required
+def make_address_default(request):
+    id = request.GET["id"]
+    Address.objects.update(status=False)
+    Address.objects.filter(id=id).update(status=True)
+    return JsonResponse({"boolean": True})
+
+
+

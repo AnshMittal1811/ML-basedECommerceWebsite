@@ -1,7 +1,7 @@
 from django.urls import include, path
 from core.views import (add_ajax_review, add_to_cart, cart_view, category_product_list_view,
                         category_list_view, checkout_view, customer_dashboard, delete_from_cart, 
-                        filter_view, order_detail, payment_completed_view, payment_failed_view, 
+                        filter_view, make_address_default, order_detail, payment_completed_view, payment_failed_view, 
                         product_detail_view, search_view, tags_list_view, update_cart, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
@@ -56,5 +56,8 @@ urlpatterns = [
     # Customer Dashboard
     path("dashboard/", customer_dashboard, name = "dashboard"),
     path("dashboard/order/<int:id>", order_detail, name = "order-detail"),
+
+    # Making Default Address
+    path('make-default-address/', make_address_default, name='make-default-address'),
 
 ]

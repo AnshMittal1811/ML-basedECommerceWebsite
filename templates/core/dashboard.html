@@ -171,8 +171,17 @@
                                                             <p>{{a.mobile}}</p>
                                                             <!-- <p>{{a.status}}</p> -->
                                                         </address>
-                                                        <button class="btn">Make Default</button>
-                                                        <i class="fa fa-check-circle text-success"></i>
+                                                        {% if a.status %}
+                                                            <br />
+                                                            <i data-address-id="{{a.id}}" class="fa fa-stack-2x fa-check-circle text-success check{{a.id}} check"></i>
+                                                            <button data-address-id="{{a.id}}" style="display:none;" class="btn make-default-address button{{a.id}} action_btn">Make Default</button>
+                                                            <br />
+                                                        {% else %}
+                                                            <br />
+                                                            <i data-address-id="{{a.id}}" style="display:none;" class="fa fa-stack-2x fa-check-circle text-success check{{a.id}} check"></i>
+                                                            <button data-address-id="{{a.id}}" class="btn make-default-address button{{a.id}} action_btn">Make Default</button>
+                                                            <br />
+                                                        {% endif %}
                                                     </div>                                                    
                                                 </div>
                                             </div>
