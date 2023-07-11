@@ -245,7 +245,7 @@
                                 <div class="header-action-icon-2">
                                     <a href="{% url 'core:wishlist' %}">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
-                                        <span class="pro-count blue">6</span>
+                                        <span class="pro-count blue">{{wish_count.count}}</span>
                                     </a>
                                     <a href="{% url 'core:wishlist' %}"><span class="lable">Wishlist</span></a>
                                 </div>
@@ -495,7 +495,7 @@
                             <div class="header-action-icon-2">
                                 <a href="{% url 'core:wishlist' %}">
                                     <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
-                                    <span class="pro-count white">4</span>
+                                    <span class="pro-count white">{{wish_count.count}}</span>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">

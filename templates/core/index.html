@@ -84,7 +84,7 @@
                                                     <a href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">-{{ p.get_percentage|floatformat:0 }}%</span>
+                                                    <span class="hot" style="background:rgba(254, 124, 54, 0.94);">-{{ p.get_percentage|floatformat:0 }}%</span>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
@@ -102,17 +102,22 @@
                                                     <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' p.vendor.v_id %}">{{ p.vendor.title }}</a></span>
                                                 </div>
                                                 <div class="product-card-bottom">
-                                                    <div class="product-price">
-                                                        <span>$</span> <span class="current-product-price-{{p.id}}">{{ p.price }}</span>
-                                                        <span class="old-price">${{ p.old_price }}</span>
-                                                    </div>
-                                                    <div class="add-cart">
-                                                        <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}">
-                                                        <input type="hidden" value="{{ p.p_id }}" class="product-pid-{{p.id}}">
-                                                        <input type="hidden" value="{{ p.image.url }}" class="product-image-{{p.id}}">
-                                                        <input type="hidden" value="{{ p.id }}" class="product-id-{{p.id}}">
-                                                        <input type="hidden" value="{{ p.title }}" class="product-title-{{p.id}}">
-                                                        <button class="add btn btn-success add-to-cart-btn b-none" data-index="{{ p.id }}" style="border:none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
+                                                    <div>
+                                                        <div class="product-price">
+                                                            <span>$</span> <span class="current-product-price-{{p.id}}">{{ p.price }}</span>
+                                                            <span class="old-price">${{ p.old_price }}</span>
+                                                        </div>
+                                                        <div class="add-cart">
+                                                            <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}">
+                                                            <input type="hidden" value="{{ p.p_id }}" class="product-pid-{{p.id}}">
+                                                            <input type="hidden" value="{{ p.image.url }}" class="product-image-{{p.id}}">
+                                                            <input type="hidden" value="{{ p.id }}" class="product-id-{{p.id}}">
+                                                            <input type="hidden" value="{{ p.title }}" class="product-title-{{p.id}}">
+                                                            <div class="d-flex">
+                                                                <button class="add btn btn-success add-to-cart-btn b-none" data-index="{{ p.id }}" style="border:none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
+                                                                <button style="border:none; background: rgba(244, 56, 56, 0.274);transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(252, 71, 71, 0.907)'" onmouseout="this.style.backgroundColor='rgba(244, 56, 56, 0.274)'" class="add btn add-to-wishlist b-none" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart mr-5" style=" fill: rgb(255, 0, 4);"></i></button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
