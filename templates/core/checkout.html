@@ -686,7 +686,7 @@
                                     <tr>
                                         <td class="image product-thumbnail"><img src="{{item.image}}" alt="#"></td>
                                         <td>
-                                            <h6 class="w-160 mb-5"><a href="{% url 'core:product-detail' item.p_id%}" class="text-heading">{{item.title}}</a></h6></span>
+                                            <h6 class="w-160 mb-5"><a href="{% url 'core:product-detail' item.p_id%}" class="text-heading">{{item.title|truncatechars:20}}</a></h6></span>
                                             <!-- <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width:90%">
@@ -699,10 +699,10 @@
                                             <h6 class="text-muted pl-20 pr-20">x {{ item.qty }}</h6>
                                         </td>
                                         <td>
-                                            <h5 class="text-muted">$ {{item.price}}</h4>
+                                            <h6 class="text-muted">$ {{item.price}}</h6>
                                         </td>
                                         <td>
-                                            <h5 class="text-brand">$ {% widthratio item.price 1 item.qty %}</h5>
+                                            <h6 class="text-brand">$ {% widthratio item.price 1 item.qty %}</h6>
                                         </td>
                                     </tr>
                                     {% endfor %}

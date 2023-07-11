@@ -53,7 +53,7 @@ $("#commentForm").submit(function(element){
 // For Filtering based on Categories and Vendors
 $(document).ready(function (){
     $(".filter-checkbox, #price-filter-btn").on("click", function(){
-        console.log("A checkbox have been clicked");
+        // console.log("A checkbox have been clicked");
         let filter_object = {}
 
         let min_price = $("#max_price").attr("min")
@@ -72,21 +72,65 @@ $(document).ready(function (){
                 return element.value
             })
         })
-        console.log("Filter object is:", filter_object);
+        // console.log("Filter object is:", filter_object);
         $.ajax({
             url: '/filter-products', //Can be done using Django URL template for core
             data: filter_object,
             dataType: 'json',
             beforeSend: function(){
-                console.log("Filtering Product...");
+                // console.log("Filtering Product...");
             },
             success: function(response){
                 console.log(response);
-                console.log("Data filtered successfully...");
+                // console.log("Data filtered successfully...");
                 $("#filtered-product").html(response.data)
             }
         })
     })
+
+
+    // Getting the product counts (Can also be used for recommendation)
+    $(document).ready(function() {
+        $(".filter-checkbox, #price-filter-btn").on("click", function() {
+            // console.log("A checkbox has been clicked");
+            let filter_object = {};
+    
+            let min_price = $("#max_price").attr("min");
+            let max_price = $("#max_price").val();
+    
+            filter_object.min_price = min_price;
+            filter_object.max_price = max_price;
+    
+            $(".filter-checkbox").each(function() {
+                let filter_value = $(this).val();
+                let filter_key = $(this).data("filter");
+    
+                filter_object[filter_key] = Array.from($(`input[data-filter=${filter_key}]:checked`)).map(function(element) {
+                    return element.value;
+                });
+            });
+    
+            // console.log("Filter object is:", filter_object);
+    
+            $.ajax({
+                url: '/filter-products', // Replace with your actual URL
+                data: filter_object,
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Filtering products...");
+                },
+                success: function(response) {
+                    // console.log(response);
+                    // console.log("Data filtered successfully...");
+                    $("#filtered-product").html(response.data);
+                    $("#product-count").text(response.product_count);
+                    $("#pluralize").text(response.product_count === 1 ? '' : 's');
+                }
+            });
+        });
+    });
+
+
     // Changing the price bar in real time
     $("#max_price").on("blur", function(){
         let min_price = $(this).attr('min')

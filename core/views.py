@@ -208,13 +208,15 @@ def filter_view(request):
     if len(vendors) > 0:
         products = products.filter(vendor__id__in = vendors).distinct()
 
+    product_count = products.count()
+
     # context = {
     #     "products": products,
     # }
 
     data = render_to_string("core/async/product-list.html", {"products": products,})
 
-    return JsonResponse({"data": data})
+    return JsonResponse({"data": data, "product_count": product_count})
 
 
 def add_to_cart(request):
@@ -536,8 +538,10 @@ def about_us(request):
 def purchase_guide(request):
     return render(request, "core/purchase_guide.html")
 
+
 def privacy_policy(request):
     return render(request, "core/privacy_policy.html")
+
 
 def terms_of_service(request):
     return render(request, "core/terms_of_service.html")

@@ -100,7 +100,7 @@
                                         <ul>
                                             {% for cat in categories %}
                                             <li>
-                                                <input data-filter="category" class="form-check-input filter-checkbox" type="checkbox" name="checkbox" id="exampleCheckbox2" value="{{cat.id}}" />
+                                                <input data-filter="category" class="form-check-input filter-checkbox" type="checkbox" name="checkbox" id="exampleCheckbox{{cat.cid}}" value="{{cat.id}}" />
                                                 &nbsp;&nbsp;
                                                 <a href="{% url 'core:category-product-list' cat.c_id %}"> <img src="{{cat.image.url}}" alt="" />{{cat.title}}</a>
                                             </li>
@@ -115,7 +115,7 @@
                                     <div class="d-flex">
                                         <div class="customee-checkbox mr-80">
                                             {% for ven in vendors %}
-                                                <input class="form-check-input filter-checkbox" data-filter="vendor" type="checkbox" name="checkbox" id="exampleCheckbox1" value="{{ven.id}}" />
+                                                <input class="form-check-input filter-checkbox" data-filter="vendor" type="checkbox" name="checkbox" id="exampleCheckbox{{ven.id}}" value="{{ven.id}}" />
                                                 <label class="form-check-label" for="exampleCheckbox1"><span><h5>&nbsp;&nbsp;{{ven.title}}</h5></span></label>
                                                 <br /><br />
                                             {% endfor %}
@@ -165,7 +165,7 @@
                 <div class="col-12">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize}} for you!</p>
+                            <p>We found <strong class="text-brand" id="product-count">{{ products.count }}</strong> item<span id="pluralize">{{ products.count|pluralize }}</span> for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
