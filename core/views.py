@@ -8,6 +8,8 @@ from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+
 from core.models import (Product, Category, Vendor, 
                          CartOrder, CartOrderItems, 
                          ProductImages, ProductReview, 
@@ -433,7 +435,9 @@ def wishlist_view(request):
     }
     return render(request, "core/wishlist.html", context)
 
-@login_required
+
+
+# @login_required
 def add_to_wishlist(request):
     product_id = request.GET["id"]
     product = Product.objects.get(id=product_id)
@@ -454,3 +458,23 @@ def add_to_wishlist(request):
         'bool':True,
     }
     return JsonResponse(context)
+
+
+def remove_from_wishlist(request):
+    p_id = request.GET["id"]
+    wish = wishlist.objects.filter(user=request.user)
+
+    product = wishlist.objects.get(id=p_id)
+    product.delete()
+
+    context = {
+        "bool": True,
+        "wish": wish, 
+    }
+
+    wish_json = serializers.serialize('json', wish)
+    data = render_to_string("core/async/wishlist.html", context)
+
+    return JsonResponse({"data": data,
+                         "wish": wish_json})
+

@@ -4,7 +4,8 @@ from core.views import (add_ajax_review, add_to_cart, add_to_wishlist, cart_view
                         checkout_view, customer_dashboard, delete_from_cart, 
                         filter_view, make_address_default, order_detail, 
                         payment_completed_view, payment_failed_view, 
-                        product_detail_view, search_view, tags_list_view, 
+                        product_detail_view, remove_from_wishlist, 
+                        search_view, tags_list_view, 
                         update_cart, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
@@ -66,5 +67,6 @@ urlpatterns = [
     # Wishlist Page
     path('wishlist/', wishlist_view, name = "wishlist"),
     path('add-to-wishlist/', add_to_wishlist, name = "add-to-wishlist"),
+    path('remove-from-wishlist/', remove_from_wishlist, name = "remove-from-wishlist"),
 
 ]

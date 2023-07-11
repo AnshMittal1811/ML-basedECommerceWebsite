@@ -1,11 +1,8 @@
-{% extends 'partials/base.html' %}
-{% block content %}
-{% load static %}
-    <main class="main" id="wishlist-list">
+    <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="{% url  'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                    <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                     <span></span> Shop <span></span> Fillter
                 </div>
             </div>
@@ -195,4 +192,3 @@
             </div>
         </div>
     </main>
-{% endblock content %}
