@@ -52,6 +52,13 @@
                                                     manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
                                                 </p>
                                             </div>
+                                            <!-- <div class="mt-4"> 
+                                                <p>{{month}}</p>
+                                                <p>{{total_orders}}</p>
+                                            </div> -->
+                                            <div>
+                                                <canvas style="height:50px;" id="myChart"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
@@ -257,4 +264,32 @@
             </div>
         </div>
     </main>
+    <script>
+        const labels ={{ month|safe }};
+
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Orders',
+            backgroundColor: 'rgb(59, 183, 126)',
+            borderColor: 'rgb(59, 183, 126)',
+            data: {{ total_orders|safe }}
+          }],
+
+        };
+
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            tooltips: {enabled: false},
+            hover: {mode: null},
+          }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+      </script>
 {% endblock content %}

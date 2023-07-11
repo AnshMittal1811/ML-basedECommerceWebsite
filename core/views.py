@@ -10,16 +10,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 
+from django.db.models.functions import ExtractMonth
+
+import random
+from datetime import datetime
+import calendar
+
+from paypal.standard.forms import PayPalPaymentsForm
+from taggit.models import Tag
+
 from core.models import (Product, Category, Vendor, 
                          CartOrder, CartOrderItems, 
                          ProductImages, ProductReview, 
                          Address, wishlist)
 from core.forms import ProductReviewForms
 
-import random
-from datetime import datetime
-from paypal.standard.forms import PayPalPaymentsForm
-from taggit.models import Tag
 
 
 # Create your views here.
@@ -386,6 +391,15 @@ def customer_dashboard(request):
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
 
+
+    orderch = CartOrder.objects.annotate(month = ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
+    month = []
+    total_orders = []
+
+    for ord in orderch:
+        month.append(calendar.month_name[ord['month']])
+        total_orders.append(ord["count"])
+
     if request.method == "POST":
         address=request.POST.get("address")
         mobile = request.POST.get("mobile")
@@ -400,7 +414,10 @@ def customer_dashboard(request):
 
     context={
         "orders": orders,
+        "orders_chart": orderch,
         "address": address,
+        "month": month,
+        "total_orders": total_orders,
     }
     return render(request, 'core/dashboard.html', context)
 
@@ -435,7 +452,6 @@ def wishlist_view(request):
         "wish": wish,
     }
     return render(request, "core/wishlist.html", context)
-
 
 
 # @login_required
