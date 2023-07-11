@@ -33,6 +33,16 @@
             background: transparent;
             }
 
+            .product-cart-wrap {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            .product-img-action-wrap {
+                flex-grow: 1;
+            }
+
+
             /* .tag-list {
                 flex-wrap: wrap;
                 gap: 5px;
@@ -66,7 +76,24 @@
                     </a>
                     <div class="shop-product-fillter-header">
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
+                            <div class="col-xl-12 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
+                                <div class="card">
+                                    <h5 class="mb-30">By Tags</h5>
+                                    <div class="sidebar-widget widget-tags">
+                                        <ul class="tags-list" style="flex-wrap:wrap; gap: 5px;li{white-space: nowrap;};">
+                                            <!-- Add the tags for loop here -->
+                                            {% for t in tags %}
+                                            <li class="hover-up">
+                                                <a href="blog-category-grid.html"><i class=" mr-10"></i>#{{t}}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
                                 <div class="card">
                                     <h5 class="mb-30">By Categories</h5>
                                     <div class="categories-dropdown-wrap font-heading">
@@ -82,36 +109,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
+                            <div class="col-xl-4 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
                                 <div class="card">
                                     <h5 class="mb-30">By Vendors</h5>
                                     <div class="d-flex">
                                         <div class="customee-checkbox mr-80">
                                             {% for ven in vendors %}
                                                 <input class="form-check-input filter-checkbox" data-filter="vendor" type="checkbox" name="checkbox" id="exampleCheckbox1" value="{{ven.id}}" />
-                                                <label class="form-check-label" for="exampleCheckbox1"><span>{{ven.title}}</span></label>
+                                                <label class="form-check-label" for="exampleCheckbox1"><span><h5>&nbsp;&nbsp;{{ven.title}}</h5></span></label>
                                                 <br /><br />
                                             {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
-                                <div class="card">
-                                    <h5 class="mb-30">By Tags</h5>
-                                    <div class="sidebar-widget widget-tags">
-                                        <ul class="tags-list" style="flex-wrap:wrap; gap: 5px;li{white-space: nowrap;};">
-                                            <!-- Add the tags for loop here -->
-                                            {% for t in tags %}
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class=" mr-10"></i>#{{t}}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
+                            <div class="col-xl-4 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
                                 <div class="card">
                                     <h5 class="mb-10">By Price</h5>
                                     <div class="sidebar-widget price_range range">
@@ -210,7 +222,7 @@
                                     <div class="product-action-1">
                                         <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                        <a aria-label="Details" href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="hot">-{{ p.get_percentage|floatformat:0 }}%</span>

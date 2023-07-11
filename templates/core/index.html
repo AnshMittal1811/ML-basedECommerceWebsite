@@ -1,6 +1,18 @@
 {% extends 'partials/base.html' %}
 {% block content %}
 {% load static %}
+
+<style>
+    .product-cart-wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .product-img-action-wrap {
+        flex-grow: 1;
+    }
+</style>
+
     <main class="main">
         <div class="container mb-30">
             <div class="row flex-row-reverse">
@@ -84,12 +96,14 @@
                                                     <div class="d-flex">
                                                         <a aria-label="Add To Wishlist" class="action-btn add-to-wishlist" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                                        <a href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
+                                                        <a aria-label="Details" href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                                     </div>
                                                 </div>
+                                                {% if p.get_percentage %}
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="hot" style="background:rgba(254, 124, 54, 0.94);">-{{ p.get_percentage|floatformat:0 }}%</span>
                                                 </div>
+                                                {% endif %}
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
