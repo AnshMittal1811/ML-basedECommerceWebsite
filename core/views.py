@@ -24,6 +24,7 @@ from core.models import (Product, Category, Vendor,
                          ProductImages, ProductReview, 
                          Address, wishlist)
 from core.forms import ProductReviewForms
+from userauths.models import ContactUs, Profile
 
 
 
@@ -391,7 +392,6 @@ def customer_dashboard(request):
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
 
-
     orderch = CartOrder.objects.annotate(month = ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
     month = []
     total_orders = []
@@ -411,8 +411,13 @@ def customer_dashboard(request):
         )
         messages.success(request,"Address Added Successfully.")
         return redirect("core:dashboard")
+    else:
+        print("Error")
+
+    user_profile = Profile.objects.get(user=request.user)
 
     context={
+        "user_profile": user_profile,
         "orders": orders,
         "orders_chart": orderch,
         "address": address,
@@ -495,3 +500,44 @@ def remove_from_wishlist(request):
     return JsonResponse({"data": data,
                          "wish": wish_json})
 
+
+# Other Pages 
+def contact(request):
+    return render(request, "core/contact.html")
+
+
+def ajax_contact_form(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    phone = request.GET['phone']
+    subject = request.GET['subject']
+    message = request.GET['message']
+
+    contact = ContactUs.objects.create(
+        full_name=full_name,
+        email=email,
+        phone=phone,
+        subject=subject,
+        message=message,
+    )
+
+    data = {
+        "bool": True,
+        "message": "Message Sent Successfully"
+    }
+
+    return JsonResponse({"data":data})
+
+
+def about_us(request):
+    return render(request, "core/about_us.html")
+
+
+def purchase_guide(request):
+    return render(request, "core/purchase_guide.html")
+
+def privacy_policy(request):
+    return render(request, "core/privacy_policy.html")
+
+def terms_of_service(request):
+    return render(request, "core/terms_of_service.html")

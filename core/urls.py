@@ -1,11 +1,11 @@
 from django.urls import include, path
-from core.views import (add_ajax_review, add_to_cart, add_to_wishlist, cart_view, 
+from core.views import (about_us, add_ajax_review, add_to_cart, add_to_wishlist, ajax_contact_form, cart_view, 
                         category_product_list_view, category_list_view, 
-                        checkout_view, customer_dashboard, delete_from_cart, 
+                        checkout_view, contact, customer_dashboard, delete_from_cart, 
                         filter_view, make_address_default, order_detail, 
-                        payment_completed_view, payment_failed_view, 
-                        product_detail_view, remove_from_wishlist, 
-                        search_view, tags_list_view, 
+                        payment_completed_view, payment_failed_view, privacy_policy, 
+                        product_detail_view, purchase_guide, remove_from_wishlist, 
+                        search_view, tags_list_view, terms_of_service, 
                         update_cart, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
@@ -69,4 +69,11 @@ urlpatterns = [
     path('add-to-wishlist/', add_to_wishlist, name = "add-to-wishlist"),
     path('remove-from-wishlist/', remove_from_wishlist, name = "remove-from-wishlist"),
 
+    path("contact/", contact, name="contact"),
+    path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
+
+    path("about_us/", about_us, name="about_us"),
+    path("purchase_guide/", purchase_guide, name="purchase_guide"),
+    path("privacy_policy/", privacy_policy, name="privacy_policy"),
+    path("terms_of_service/", terms_of_service, name="terms_of_service"),
 ]

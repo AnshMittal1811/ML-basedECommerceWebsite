@@ -91,13 +91,13 @@
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a href="{% url 'core:product-detail' p.p_id%}">
                                             <img class="default-img" src="{{ p.image.url }}" alt="" />
                                             <img class="hover-img" src="{{ p.image.url }}" alt="" />
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="{% url 'core:wishlist' %}"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                     </div>
@@ -107,9 +107,9 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ p.category.title }}</a>
+                                        <a href="{% url 'core:product-detail' p.p_id%}">{{ p.category.title }}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{p.title}}</a></h2>
+                                    <h2><a href="{% url 'core:product-detail' p.p_id%}">{{p.title}}</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -139,8 +139,32 @@
                         {% endfor %}
                         <!--end product card-->
                     </div>
+
+
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+                    <!-- #################### Adding Pagination ##################### -->
+
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ##################   DEAL OF THE DAY   ##################### -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
+                    <!-- ############################################################ -->
                     <!--product grid-->
-                    <div class="pagination-area mt-20 mb-20">
+                    <!-- <div class="pagination-area mt-20 mb-20">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
                                 <li class="page-item">
@@ -315,7 +339,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
                     <!--End Deals-->
                 </div>
             </div>

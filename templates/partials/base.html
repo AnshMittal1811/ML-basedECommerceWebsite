@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="font-xs">
                                     <ul>
-                                        <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
+                                        <li class="mb-5">Vendor: <span class="text-brand">Anshm</span></li>
                                         <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2022</span></li>
                                     </ul>
                                 </div>
@@ -130,7 +130,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="page-about.html">About Us</a></li>
+                                <li><a href="{% url 'core:about_us' %}">About Us</a></li>
                                 <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
                                 <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
                                 <li><a href="shop-order.html">Order Tracking</a></li>
@@ -141,9 +141,9 @@
                         <div class="text-center">
                             <div id="news-flash" class="d-inline-block">
                                 <ul>
-                                    <li>100% Secure delivery without contacting the courier</li>
-                                    <li>Supper Value Deals - Save more with coupons</li>
-                                    <li>Trendy 25silver jewelry, save up 35% off today</li>
+                                    <li>Created by Ansh Mittal (based on AliThemes Template)</li>
+                                    <li>A Machine Learning Enthusiast and Full-stack developers</li>
+                                    <li>Follow him on LinkedIn, GitHub, Scholar, ResearchGate</li>
                                 </ul>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
                             <ul>
-                                <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                                <!-- <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li> -->
                                 <li>
                                     <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
@@ -268,7 +268,7 @@
                                     <a href="page-account.html">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}" />
                                     </a>
-                                    <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                    <a href="{% url 'core:dashboard' %}"><span class="lable ml-0">Account</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
@@ -332,13 +332,14 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
+                                <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Expand/Collapse</span></div>
                             </div>
                         </div>
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                             <nav>
                                 <ul>
-                                    <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li>
+                                    <li></li>
+                                    <!-- <li class="hot-deals"><img src="{% static 'assets/imgs/theme/icons/icon-hot.svg' %}" alt="hot deals" /><a href="shop-grid-right.html">Deals</a></li> -->
                                     <li>
                                         <a class="active" href="{% url 'core:index'%}">Home 
                                             <!-- <i class="fi-rs-angle-down"></i> -->
@@ -356,7 +357,41 @@
                                         <a href="page-about.html">Category</a>
                                     </li> -->
                                     <li>
+                                        <a href="https://medium.com/@anshm18111996/">Blog 
+                                            <!-- <i class="fi-rs-angle-down"></i> -->
+                                        </a>
+                                        <!-- To be Added later -->
+                                        <!-- <ul class="sub-menu">
+                                            <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
+                                            <li><a href="blog-category-list.html">Blog Category List</a></li>
+                                            <li><a href="blog-category-big.html">Blog Category Big</a></li>
+                                            <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
+                                            <li>
+                                                <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
+                                                <ul class="level-menu level-menu-modify">
+                                                    <li><a href="blog-post-left.html">Left Sidebar</a></li>
+                                                    <li><a href="blog-post-right.html">Right Sidebar</a></li>
+                                                    <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul> -->
+                                    </li>
+                                    <li>
                                         <a href="{% url 'core:product-list' %}">Shop</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'core:vendor-list' %}">Vendors 
+                                            <!-- <i class="fi-rs-angle-down"></i> -->
+                                        </a>
+                                        <!-- To be added later -->
+                                        <!-- <ul class="sub-menu">
+                                            <li><a href="vendors-grid.html">Vendors Grid</a></li>
+                                            <li><a href="vendors-list.html">Vendors List</a></li>
+                                            <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
+                                            <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
+                                            <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
+                                            <li><a href="vendor-guide.html">Vendor Guide</a></li>
+                                        </ul> -->
                                     </li>
                                     <li>
                                         <a href="{% url 'core:category-list' %}">Category <i class="fi-rs-angle-down"></i></a>
@@ -368,18 +403,16 @@
                                             <li><a href="{% url 'core:category-list' %}">All Categories</a></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="vendors-grid.html">Vendors Grid</a></li>
-                                            <li><a href="vendors-list.html">Vendors List</a></li>
-                                            <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
-                                            <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
-                                            <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
-                                            <li><a href="vendor-guide.html">Vendor Guide</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="position-static">
+                                                                <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- ************************************************* -->
+                                    <!-- To add MEGA MENU in case of festive holidays -->
+
+                                    <!-- <li class="position-static">
                                         <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -438,51 +471,57 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
-                                            <li><a href="blog-category-list.html">Blog Category List</a></li>
-                                            <li><a href="blog-category-big.html">Blog Category Big</a></li>
-                                            <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                            <li>
-                                                <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu level-menu-modify">
-                                                    <li><a href="blog-post-left.html">Left Sidebar</a></li>
-                                                    <li><a href="blog-post-right.html">Right Sidebar</a></li>
-                                                    <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    </li> -->
+                                    
                                     <li>
                                         <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="page-about.html">About Us</a></li>
-                                            <li><a href="page-contact.html">Contact</a></li>
+                                            <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                                            <li><a href="{% url 'core:contact'%}">Contact</a></li>
                                             <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
-                                            <li><a href="page-login.html">Login</a></li>
-                                            <li><a href="page-register.html">Register</a></li>
+                                            <li><a href="{% url 'userauths:sign-in' %}">Login</a></li>
+                                            <li><a href="{% url 'userauths:sign-up' %}">Register</a></li>
                                             <li><a href="page-forgot-password.html">Forgot password</a></li>
                                             <li><a href="page-reset-password.html">Reset password</a></li>
-                                            <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                            <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                            <li><a href="page-terms.html">Terms of Service</a></li>
+                                            <li><a href="{% url 'core:purchase_guide' %}">Purchase Guide</a></li>
+                                            <li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+                                            <li><a href="{% url 'core:terms_of_service' %}">Terms of Service</a></li>
                                             <li><a href="page-404.html">404 Page</a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="page-contact.html">Contact</a>
+                                        <a href="{% url 'core:contact'%}">Contact</a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-                    <div class="hotline d-none d-lg-flex">
+
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- ************************************************** -->
+                    <!-- FOR CHATBOT -->
+                    <!-- <div class="hotline d-none d-lg-flex">
                         <img src="{% static 'assets/imgs/theme/icons/icon-headphone.svg' %}" alt="hotline" />
                         <p>1900 - 888<span>24/7 Support Center</span></p>
-                    </div>
+                    </div> -->
                     <div class="header-action-icon-2 d-block d-lg-none">
                         <div class="burger-icon burger-icon-white">
                             <span class="burger-icon-top"></span>
@@ -554,7 +593,7 @@
                     <!-- mobile menu start -->
                     <nav>
                         <ul class="mobile-menu font-heading">
-                            <li class="menu-item-has-children">
+                            <li class="menu-item">
                                 <a href="{%url 'core:index'%}">Home</a>
                                 <!-- <ul class="dropdown"> -->
                                     <!-- <li><a href="{% url 'core:index' %}">Home 1</a></li> -->
@@ -564,6 +603,36 @@
                                     <li><a href="index-5.html">Home 5</a></li>
                                     <li><a href="index-6.html">Home 6</a></li> -->
                                 <!-- </ul> -->
+                            </li>
+                            <li class="menu-item">
+                                <a href="https://medium.com/@anshm18111996/">Blog</a>
+                                <!-- To be added -- List of blogs -->
+                                <!-- <ul class="dropdown">
+                                    <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
+                                    <li><a href="blog-category-list.html">Blog Category List</a></li>
+                                    <li><a href="blog-category-big.html">Blog Category Big</a></li>
+                                    <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Single Product Layout</a>
+                                        <ul class="dropdown">
+                                            <li><a href="blog-post-left.html">Left Sidebar</a></li>
+                                            <li><a href="blog-post-right.html">Right Sidebar</a></li>
+                                            <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                </ul> -->
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% url 'core:vendor-list' %}">Vendors</a>
+                                <!-- To be added later -->
+                                <!-- <ul class="dropdown">
+                                    <li><a href="vendors-grid.html">Vendors Grid</a></li>
+                                    <li><a href="vendors-list.html">Vendors List</a></li>
+                                    <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
+                                    <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
+                                    <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
+                                    <li><a href="vendor-guide.html">Vendor Guide</a></li>
+                                </ul> -->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="{% url 'core:product-list' %}">shop</a>
@@ -600,18 +669,15 @@
                                     </li>
                                 </ul> -->
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Vendors</a>
-                                <ul class="dropdown">
-                                    <li><a href="vendors-grid.html">Vendors Grid</a></li>
-                                    <li><a href="vendors-list.html">Vendors List</a></li>
-                                    <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
-                                    <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
-                                    <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
-                                    <li><a href="vendor-guide.html">Vendor Guide</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- ************************************************* -->
+                            <!-- To add MEGA MENU in case of festive holidays -->
+                            <!-- <li class="menu-item-has-children">
                                 <a href="#">Mega menu</a>
                                 <ul class="dropdown">
                                     <li class="menu-item-has-children">
@@ -642,37 +708,20 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="blog-category-fullwidth.html">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
-                                    <li><a href="blog-category-list.html">Blog Category List</a></li>
-                                    <li><a href="blog-category-big.html">Blog Category Big</a></li>
-                                    <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Single Product Layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog-post-left.html">Left Sidebar</a></li>
-                                            <li><a href="blog-post-right.html">Right Sidebar</a></li>
-                                            <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                            </li> -->
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="page-about.html">About Us</a></li>
-                                    <li><a href="page-contact.html">Contact</a></li>
+                                    <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                                    <li><a href="{% url 'core:contact'%}">Contact</a></li>
                                     <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
-                                    <li><a href="page-login.html">Login</a></li>
-                                    <li><a href="page-register.html">Register</a></li>
+                                    <li><a href="{% url 'userauths:sign-in' %}">Login</a></li>
+                                    <li><a href="{% url 'userauths:sign-up' %}">Register</a></li>
                                     <li><a href="page-forgot-password.html">Forgot password</a></li>
                                     <li><a href="page-reset-password.html">Reset password</a></li>
-                                    <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                    <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="page-terms.html">Terms of Service</a></li>
+                                    <li><a href="{% url 'core:purchase_guide' %}">Purchase Guide</a></li>
+                                    <li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+                                    <li><a href="{% url 'core:terms_of_service' %}">Terms of Service</a></li>
                                     <li><a href="page-404.html">404 Page</a></li>
                                 </ul>
                             </li>
@@ -694,7 +743,7 @@
                         <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
+                        <a href="{% url 'userauths:sign-in' %}"><i class="fi-rs-user"></i>Log In / Sign Up </a>
                     </div>
                     <div class="single-mobile-header-info">
                         <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
@@ -708,7 +757,7 @@
                     <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-pinterest-white.svg' %}" alt="" /></a>
                     <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-youtube-white.svg' %}" alt="" /></a>
                 </div>
-                <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+                <!-- <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div> -->
             </div>
         </div>
     </div>
@@ -719,7 +768,19 @@
     {% endblock content %}
 
     <footer class="main">
-        <section class="newsletter mb-15">
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################### NEWSLETTER CONTENT ############################ -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- ###################################################################### -->
+        <!-- <section class="newsletter mb-15">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -739,8 +800,21 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="featured section-padding">
+        </section> -->
+
+        
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- ########################################  FEATURE SECTION  ######################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- #################################################################################### -->
+        <!-- <section class="featured section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 mb-md-4 mb-xl-0">
@@ -811,7 +885,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+        
         <section class="section-padding footer-mid">
             <div class="container pt-15 pb-20">
                 <div class="row">
@@ -819,29 +894,41 @@
                         <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0">
                             <div class="logo mb-30">
                                 <a href="{% url 'core:index' %}" class="mb-15"><img src="{% static 'assets/imgs/theme/logo.svg' %}" alt="logo" /></a>
-                                <p class="font-lg text-heading">Awesome grocery store website template</p>
+                                <!-- <p class="font-lg text-heading">Awesome grocery store website template</p> -->
                             </div>
                             <ul class="contact-infor">
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>1226 W Adams Blvd, Palisades-II, Los Angeles, CA 90007, United States</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>(+1) - 213-573-9188</span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-email-2.svg' %}" alt="" /><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a190b060f2a240f191e44090507">[email&#160;protected]</a></span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}" alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}" alt="" /><strong>Hours:</strong><span>9:00 - 18:00, Mon - Sat</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="footer-link-widget col">
                         <h4 class="widget-title">Company</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Support Center</a></li>
+                            <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                            <li><a href="{% url 'core:dashboard' %}">Delivery Information</a></li>
+                            <li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+                            <li><a href="{% url 'core:terms_of_service' %}">Terms &amp; Conditions</a></li>
+                            <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+                            <!-- <li><a href="#">Support Center</a></li> -->
                             <li><a href="#">Careers</a></li>
                         </ul>
                     </div>
-                    <div class="footer-link-widget col">
+
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################### POPULAR & CORPORATE ########################## -->
+                    <!-- ############################### WIDGETS ################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- ########################################################################## -->
+                    <!-- <div class="footer-link-widget col">
                         <h4 class="widget-title">Account</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="#">Sign In</a></li>
@@ -864,8 +951,8 @@
                             <li><a href="#">Accessibility</a></li>
                             <li><a href="#">Promotions</a></li>
                         </ul>
-                    </div>
-                    <div class="footer-link-widget col">
+                    </div> -->
+                    <!-- <div class="footer-link-widget col">
                         <h4 class="widget-title">Popular</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="#">Milk & Flavoured Milk</a></li>
@@ -876,7 +963,7 @@
                             <li><a href="#">Tea & Kombucha</a></li>
                             <li><a href="#">Cheese</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                     <div class="footer-link-widget widget-install-app col">
                         <h4 class="widget-title">Install App</h4>
                         <p class="wow fadeIn animated">From App Store or Google Play</p>
@@ -896,9 +983,31 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                    <!-- <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p> -->
                 </div>
-                <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
+
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- FOR CHATBOT -->
+                <!-- <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">
                         <img src="{% static 'assets/imgs/theme/icons/phone-call.svg' %}" alt="hotline" />
                         <p>1900 - 6666<span>Working 8:00 - 22:00</span></p>
@@ -907,8 +1016,30 @@
                         <img src="{% static 'assets/imgs/theme/icons/phone-call.svg' %}" alt="hotline" />
                         <p>1900 - 8888<span>24/7 Support Center</span></p>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
+                </div> -->
+
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- ************************************************** -->
+                <!-- FOR FOLLOWING -->
+                <!-- <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                     <div class="mobile-social-icon">
                         <h6>Follow Us</h6>
                         <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-facebook-white.svg' %}" alt="" /></a>
@@ -918,7 +1049,7 @@
                         <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-youtube-white.svg' %}" alt="" /></a>
                     </div>
                     <p class="font-sm">Up to 15% discount on your first subscribe</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </footer>
