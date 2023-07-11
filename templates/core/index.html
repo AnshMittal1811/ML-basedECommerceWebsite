@@ -79,7 +79,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn add-to-wishlist" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart"></i></a>
                                                     <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                                     <a href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                                 </div>
@@ -114,7 +114,7 @@
                                                             <input type="hidden" value="{{ p.id }}" class="product-id-{{p.id}}">
                                                             <input type="hidden" value="{{ p.title }}" class="product-title-{{p.id}}">
                                                             <div class="d-flex">
-                                                                <button class="add btn btn-success add-to-cart-btn b-none" data-index="{{ p.id }}" style="border:none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
+                                                                <button class="add btn btn-success add-to-cart-btn b-none" data-index="{{ p.id }}" style="border:none;" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add </button> 
                                                                 <button style="border:none; background: rgba(244, 56, 56, 0.274);transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(252, 71, 71, 0.907)'" onmouseout="this.style.backgroundColor='rgba(244, 56, 56, 0.274)'" class="add btn add-to-wishlist b-none" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart mr-5" style=" fill: rgb(255, 0, 4);"></i></button>
                                                             </div>
                                                         </div>
@@ -140,7 +140,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn ><i class="fi-rs-heart"></i></a>
                                                     <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                                     <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                                 </div>
@@ -168,7 +168,7 @@
                                                         <span class="old-price">$32.8</span>
                                                     </div>
                                                     <div class="add-cart">
-                                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                        <a class="add" href="{% url 'core:cart' %}"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                     </div>
                                                 </div>
                                             </div>
