@@ -196,17 +196,10 @@
                         <div class="search-style-2">
                             <form action="{% url 'core:search' %}" method="GET">
                                 <select class="select-active">
-                                    <option>All Categories</option>
-                                    <option>Milks and Dairies</option>
-                                    <option>Wines & Alcohol</option>
-                                    <option>Clothing & Beauty</option>
-                                    <option>Pet Foods & Toy</option>
-                                    <option>Fast food</option>
-                                    <option>Baking material</option>
-                                    <option>Vegetables</option>
-                                    <option>Fresh Seafood</option>
-                                    <option>Noodles & Rice</option>
-                                    <option>Ice cream</option>
+                                    <option>All Categories</option>                                        
+                                    {% for cat in categories%}
+                                        <option>{{cat}}</option>                                        
+                                    {% endfor %}
                                 </select>
                                 <input type="text" placeholder="Search for items..." name="q" />
                                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i>
