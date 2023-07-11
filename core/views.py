@@ -40,10 +40,11 @@ def index(request):
 
 def product_list_view(request):
     products = Product.objects.filter(product_status="published")
-
+    tags = Product.tags.values_list('name', flat=True).distinct()
 
     context = {
-        "products": products
+        "products": products,
+        "tags": tags,
     }
     return render(request,
                   'core/product-list.html',

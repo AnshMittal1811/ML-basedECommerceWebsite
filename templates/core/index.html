@@ -44,10 +44,12 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
                                 </li>
+                                {% for cat in categories %}
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Milks & Dairies</button>
+                                    <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">{{cat.title}}</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                {% endfor %}
+                                <!-- <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Coffes & Teas</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -61,7 +63,7 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="nav-tab-seven" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">Fruits</button>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <!--End nav-tabs-->
@@ -79,9 +81,11 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Add To Wishlist" class="action-btn add-to-wishlist" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                                    <a href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
+                                                    <div class="d-flex">
+                                                        <a aria-label="Add To Wishlist" class="action-btn add-to-wishlist" data-product-item="{{ p.id }}" id="add-to-cart-btn"><i class="fi-rs-heart"></i></a>
+                                                        <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                        <a href="{% url 'core:product-detail' p.p_id %}" class="action-btn"><i class="fi-rs-eye"></i></a>
+                                                    </div>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="hot" style="background:rgba(254, 124, 54, 0.94);">-{{ p.get_percentage|floatformat:0 }}%</span>
@@ -127,6 +131,8 @@
                                 </div>
                                 <!--End product-grid-4-->
                             </div>
+                            <!-- Adding everything here -->
+
                             <!--En tab one-->
                             <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
                                 <div class="row product-grid-4">
@@ -571,7 +577,7 @@
                                 </div>
                                 <!--End product-grid-4-->
                             </div>
-                            <!--En tab two-->
+                            <!-- En tab two-->
                             <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
                                 <div class="row product-grid-4">
                                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
@@ -2791,12 +2797,13 @@
                                 </div>
                                 <!--End product-grid-4-->
                             </div>
-                            <!--En tab seven-->
+                            <!--En tab seven -->
                         </div>
                         <!--End tab-content-->
                     </section>
                     <!--Products Tabs-->
-                    <section class="section-padding pb-5">
+                    <!-- Update the deals of the days -->
+                    <!-- <section class="section-padding pb-5">
                         <div class="section-title">
                             <h3 class="">Deals Of The Day</h3>
                             <a class="show-all" href="shop-grid-right.html">
@@ -2954,7 +2961,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
                     <!--End Deals-->
                     <section class="banners">
                         <div class="row">
@@ -2997,10 +3004,13 @@
                     <div class="sidebar-widget widget-category-2 mb-30">
                         <h5 class="section-title style-1 mb-30">Category</h5>
                         <ul>
+                            {% for cat in categories %}
                             <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />Milks & Dairies</a><span class="count">30</span>
+                                <a href="{% url 'core:category-product-list' cat.c_id %}"> <img src="{{ cat.image.url }}" alt="" />{{cat.title}}</a><span class="count">{{cat.category.count}}</span>
                             </li>
-                            <li>
+                            {% endfor %}
+
+                            <!-- <li>
                                 <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-2.svg' %}" alt="" />Clothing</a><span class="count">35</span>
                             </li>
                             <li>
@@ -3011,7 +3021,7 @@
                             </li>
                             <li>
                                 <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-5.svg' %}" alt="" />Fresh Fruit</a><span class="count">87</span>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- Fillter By Price -->
@@ -3054,8 +3064,14 @@
                         </div>
                         <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
                     </div>
+
+                    <!-- ********************************************************** -->
+                    <!-- ********************************************************** -->
+                    <!-- ********************************************************** -->
+                    <!-- ********************************************************** -->
+                    <!-- Add Widgets Later -->
                     <!-- Product sidebar Widget -->
-                    <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+                    <!-- <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                         <h5 class="section-title style-1 mb-30">New products</h5>
                         <div class="single-post clearfix">
                             <div class="image">
@@ -3093,7 +3109,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
                         <img src="{% static 'assets/imgs/banner/banner-11.png' %}" alt="" />
                         <div class="banner-text">
@@ -3106,7 +3122,13 @@
                 </div>
             </div>
         </div>
-        <section class="popular-categories section-padding">
+
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- Add Popular Categories section later -->
+        <!-- <section class="popular-categories section-padding">
             <div class="container">
                 <div class="section-title">
                     <div class="title">
@@ -3208,9 +3230,15 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!--End category slider-->
-        <section class="section-padding mb-30">
+
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- ********************************************************** -->
+        <!-- Add sliders for best deals -->
+        <!-- <section class="section-padding mb-30">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0">
@@ -3475,7 +3503,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!--End 4 columns-->
     </main>
 

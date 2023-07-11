@@ -32,6 +32,17 @@
             border: none;
             background: transparent;
             }
+
+            /* .tag-list {
+                flex-wrap: wrap;
+                gap: 5px;
+                list-style: none;
+                padding: 0;
+            }
+
+            .tag-list li {
+                white-space: nowrap;
+            } */
         </style>
     </head>
     <!--End header-->
@@ -89,11 +100,13 @@
                                 <div class="card">
                                     <h5 class="mb-30">By Tags</h5>
                                     <div class="sidebar-widget widget-tags">
-                                        <ul class="tags-list">
+                                        <ul class="tags-list" style="flex-wrap:wrap; gap: 5px;li{white-space: nowrap;};">
                                             <!-- Add the tags for loop here -->
+                                            {% for t in tags %}
                                             <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Milk</a>
+                                                <a href="blog-category-grid.html"><i class=" mr-10"></i>#{{t}}</a>
                                             </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
