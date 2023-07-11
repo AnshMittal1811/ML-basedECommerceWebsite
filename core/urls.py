@@ -1,11 +1,14 @@
 from django.urls import include, path
-from core.views import (add_ajax_review, add_to_cart, cart_view, category_product_list_view,
-                        category_list_view, checkout_view, customer_dashboard, delete_from_cart, 
-                        filter_view, make_address_default, order_detail, payment_completed_view, payment_failed_view, 
-                        product_detail_view, search_view, tags_list_view, update_cart, vendor_detail_view,
+from core.views import (add_ajax_review, add_to_cart, cart_view, 
+                        category_product_list_view, category_list_view, 
+                        checkout_view, customer_dashboard, delete_from_cart, 
+                        filter_view, make_address_default, order_detail, 
+                        payment_completed_view, payment_failed_view, 
+                        product_detail_view, search_view, tags_list_view, 
+                        update_cart, vendor_detail_view,
                         vendor_list_view, 
                         product_list_view, 
-                        index)
+                        index, wishlist_view)
 # from core.views import index
 
 app_name = "core"
@@ -59,5 +62,8 @@ urlpatterns = [
 
     # Making Default Address
     path('make-default-address/', make_address_default, name='make-default-address'),
+
+    # Wishlist Page
+    path('wishlist/', wishlist_view, name = "wishlist")
 
 ]

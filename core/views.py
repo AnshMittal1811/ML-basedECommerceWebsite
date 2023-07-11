@@ -8,7 +8,10 @@ from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReview, wishlist, Address
+from core.models import (Product, Category, Vendor, 
+                         CartOrder, CartOrderItems, 
+                         ProductImages, ProductReview, 
+                         Address, wishlist)
 from core.forms import ProductReviewForms
 
 import random
@@ -352,7 +355,6 @@ def checkout_view(request):
     })
 
 
-
 @login_required
 def payment_completed_view(request):
     random_hash = ''.join(random.choice('0123456789ABCDEHFGHIJKLMNOPQRSTUVWXYZ') for _ in range(16))
@@ -419,3 +421,14 @@ def make_address_default(request):
 
 
 
+@login_required
+def wishlist_view(request):
+    # try:
+    wish = wishlist.objects.filter(user=request.user)
+    # except:
+    #     wishlist = None
+
+    context = {
+        "wish": wish,
+    }
+    return render(request, "core/wishlist.html", context)
